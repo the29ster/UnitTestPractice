@@ -48,3 +48,31 @@ TEST(PasswordTest, empty_password)
 	int actual = my_password.count_leading_characters("");
 	ASSERT_EQ(0, actual);
 }
+
+TEST(PasswordTest, mixed_case_false)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("zz");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, mixed_case_true)
+{
+	Password my_password;
+	bool actual = my_password.has_mixed_case("zZ");
+	ASSERT_EQ(true, actual);
+}
+
+TEST(PasswordTest, authenticate_false)
+{
+	Password my_password;
+	bool actual = my_password.authenticate("ChIcoCA-95929");
+	ASSERT_EQ(false, actual);
+}
+
+TEST(PasswordTest, authenticate_true)
+{
+	Password my_password;
+	bool actual = my_password.authenticate("ChicoCA-95929");
+	ASSERT_EQ(true, actual);
+}
